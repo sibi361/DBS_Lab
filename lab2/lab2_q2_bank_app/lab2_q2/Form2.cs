@@ -7,10 +7,10 @@ namespace lab2_q2
     public partial class Form2 : Form
     {
         string username, password;
-        Double balance;
+        double balance;
         List<string> transactions;
 
-        public Form2(string username, string password, Double balance, List<string> transactions)
+        public Form2(string username, string password, double balance, List<string> transactions)
         {
             InitializeComponent();
 
@@ -32,20 +32,20 @@ namespace lab2_q2
         {
             if (passField.Text == "" || confirmPassField.Text == "")
             {
-                MessageBox.Show("All fields are mandatory", "ERROR");
+                MessageBox.Show("All fields are mandatory", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (passField.Text != confirmPassField.Text)
             {
-                MessageBox.Show("Passwords do not match", "ERROR");
+                MessageBox.Show("Passwords do not match", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (passField.Text == password)
             {
-                MessageBox.Show("Given new password is same as existing password.", "ERROR");
+                MessageBox.Show("Given new password is same as existing password.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 password = passField.Text;
-                MessageBox.Show("Password changed successfully", "SUCCESS");
+                MessageBox.Show("Password changed successfully", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 goBackToLogin();
             }
         }

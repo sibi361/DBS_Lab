@@ -59,7 +59,7 @@
             this.resetBtn.Margin = new System.Windows.Forms.Padding(4);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(100, 28);
-            this.resetBtn.TabIndex = 0;
+            this.resetBtn.TabIndex = 3;
             this.resetBtn.Text = "RESET";
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
@@ -70,7 +70,7 @@
             this.submitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(128, 28);
-            this.submitBtn.TabIndex = 1;
+            this.submitBtn.TabIndex = 0;
             this.submitBtn.Text = "SUBMIT";
             this.submitBtn.UseVisualStyleBackColor = true;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
@@ -103,7 +103,6 @@
             this.nameField.Name = "nameField";
             this.nameField.Size = new System.Drawing.Size(176, 22);
             this.nameField.TabIndex = 5;
-            this.nameField.Text = "karan";
             // 
             // headerLbl
             // 
@@ -156,7 +155,6 @@
             this.amtField.Name = "amtField";
             this.amtField.Size = new System.Drawing.Size(176, 22);
             this.amtField.TabIndex = 7;
-            this.amtField.Text = "78";
             // 
             // accnoField
             // 
@@ -165,14 +163,13 @@
             this.accnoField.Name = "accnoField";
             this.accnoField.Size = new System.Drawing.Size(176, 22);
             this.accnoField.TabIndex = 6;
-            this.accnoField.Text = "12345";
             // 
             // dashboardBtn
             // 
             this.dashboardBtn.Location = new System.Drawing.Point(236, 363);
             this.dashboardBtn.Name = "dashboardBtn";
             this.dashboardBtn.Size = new System.Drawing.Size(128, 28);
-            this.dashboardBtn.TabIndex = 3;
+            this.dashboardBtn.TabIndex = 1;
             this.dashboardBtn.Text = "DASHBOARD";
             this.dashboardBtn.UseVisualStyleBackColor = true;
             this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);

@@ -7,10 +7,10 @@ namespace lab2_q2
     public partial class DashboardForm : Form
     {
         string username, password;
-        Double balance;
+        double balance;
         List<string> transactions;
 
-        public DashboardForm(string username, string password, Double balance, List<string> transactions)
+        public DashboardForm(string username, string password, double balance, List<string> transactions)
         {
             InitializeComponent();
 
@@ -22,14 +22,10 @@ namespace lab2_q2
             unameLbl.Text = String.Format("Welcome {0}", username);
             balanceLbl.Text = String.Format("Current Balance: $ {0}", balance);
 
-            transactionsBox.Text = "\n";
-            transactions.ForEach(transaction =>
-            {
-                transactionsBox.Text += transaction;
-            });
+            transactions.ForEach(transaction => transactionsBox.Text += transaction);
         }
 
-        private void mTransferBtn_Click(object sender, EventArgs e)
+        private void moneyTransferBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
             MoneyTransferForm moneyTransferForm = new MoneyTransferForm(username, password, balance, transactions);
@@ -37,7 +33,7 @@ namespace lab2_q2
             moneyTransferForm.Show();
         }
 
-        private void chngPassBtn_Click(object sender, EventArgs e)
+        private void changePasswordBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
             Form2 changePasswordForm = new Form2(username, password, balance, transactions);

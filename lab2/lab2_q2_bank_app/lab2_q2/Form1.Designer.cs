@@ -36,32 +36,31 @@
             this.resetBtn = new System.Windows.Forms.Button();
             this.startInDropdown = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.loginLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameField
             // 
             this.usernameField.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.usernameField.Location = new System.Drawing.Point(148, 38);
+            this.usernameField.Location = new System.Drawing.Point(148, 81);
             this.usernameField.Margin = new System.Windows.Forms.Padding(4);
             this.usernameField.Name = "usernameField";
             this.usernameField.Size = new System.Drawing.Size(176, 22);
             this.usernameField.TabIndex = 0;
-            this.usernameField.Text = "sam";
             // 
             // passField
             // 
-            this.passField.Location = new System.Drawing.Point(148, 105);
+            this.passField.Location = new System.Drawing.Point(148, 130);
             this.passField.Margin = new System.Windows.Forms.Padding(4);
             this.passField.Name = "passField";
             this.passField.PasswordChar = '*';
             this.passField.Size = new System.Drawing.Size(176, 22);
             this.passField.TabIndex = 1;
-            this.passField.Text = "sam";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 42);
+            this.label1.Location = new System.Drawing.Point(41, 85);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
@@ -71,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 108);
+            this.label2.Location = new System.Drawing.Point(41, 133);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
@@ -80,22 +79,22 @@
             // 
             // submitBtn
             // 
-            this.submitBtn.Location = new System.Drawing.Point(224, 230);
+            this.submitBtn.Location = new System.Drawing.Point(224, 234);
             this.submitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(100, 28);
-            this.submitBtn.TabIndex = 4;
+            this.submitBtn.TabIndex = 3;
             this.submitBtn.Text = "SUBMIT";
             this.submitBtn.UseVisualStyleBackColor = true;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // resetBtn
             // 
-            this.resetBtn.Location = new System.Drawing.Point(45, 230);
+            this.resetBtn.Location = new System.Drawing.Point(45, 234);
             this.resetBtn.Margin = new System.Windows.Forms.Padding(4);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(100, 28);
-            this.resetBtn.TabIndex = 3;
+            this.resetBtn.TabIndex = 4;
             this.resetBtn.Text = "RESET";
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
@@ -104,7 +103,7 @@
             // 
             this.startInDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.startInDropdown.FormattingEnabled = true;
-            this.startInDropdown.Location = new System.Drawing.Point(148, 168);
+            this.startInDropdown.Location = new System.Drawing.Point(148, 176);
             this.startInDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.startInDropdown.Name = "startInDropdown";
             this.startInDropdown.Size = new System.Drawing.Size(176, 24);
@@ -113,18 +112,29 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 171);
+            this.label3.Location = new System.Drawing.Point(41, 179);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Start In";
             // 
+            // loginLbl
+            // 
+            this.loginLbl.AutoSize = true;
+            this.loginLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginLbl.Location = new System.Drawing.Point(39, 27);
+            this.loginLbl.Name = "loginLbl";
+            this.loginLbl.Size = new System.Drawing.Size(73, 29);
+            this.loginLbl.TabIndex = 8;
+            this.loginLbl.Text = "Login";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(377, 300);
+            this.Controls.Add(this.loginLbl);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startInDropdown);
             this.Controls.Add(this.resetBtn);
@@ -152,6 +162,7 @@
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.ComboBox startInDropdown;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label loginLbl;
     }
 }
 

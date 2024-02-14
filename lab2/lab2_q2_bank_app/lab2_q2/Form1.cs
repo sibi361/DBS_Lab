@@ -8,47 +8,48 @@ namespace lab2_q2
     {
         const string DEFAULT_USERNAME = "sam";
         const string DEFAULT_PASSWORD = "sam";
-        const Double DEFAULT_BALANCE = 10500;
+        const double DEFAULT_BALANCE = 10500;
 
         string username = DEFAULT_USERNAME;
         string password = DEFAULT_PASSWORD;
-        Double balance = DEFAULT_BALANCE;
+        double balance = DEFAULT_BALANCE;
         List<string> transactions;
 
         public Form1()
         {
             InitializeComponent();
 
-            username = DEFAULT_USERNAME;
-            password = DEFAULT_PASSWORD;
-            balance = DEFAULT_BALANCE;
             transactions = new List<string>();
+
+            // for demonstration
+            usernameField.Text = "sam";
+            passField.Text = "sam";
         }
 
-        public Form1(string username, string password, Double balance, List<string> transactions)
+        public Form1(string username, string password, double balance, List<string> transactions)
         {
+            InitializeComponent();
             this.username = username;
             this.password = password;
             this.balance = balance;
             this.transactions = transactions;
-            InitializeComponent();
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
             if (usernameField.Text == "" || passField.Text == "")
             {
-                MessageBox.Show("All fields are mandatory");
+                MessageBox.Show("All fields are mandatory", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (usernameField.Text != username)
             {
-                MessageBox.Show(string.Format("Invalid username: {0}", usernameField.Text));
+                MessageBox.Show(String.Format("Unknown username: {0}", usernameField.Text), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (passField.Text != password)
             {
-                MessageBox.Show("Invalid password");
+                MessageBox.Show("Incorrect password", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 passField.Clear();
                 return;
             }

@@ -65,7 +65,7 @@
             this.logoutBtn.Location = new System.Drawing.Point(282, 43);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Size = new System.Drawing.Size(170, 28);
-            this.logoutBtn.TabIndex = 0;
+            this.logoutBtn.TabIndex = 1;
             this.logoutBtn.Text = "LOGOUT";
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
@@ -87,10 +87,10 @@
             this.mTransferBtn.Location = new System.Drawing.Point(282, 99);
             this.mTransferBtn.Name = "mTransferBtn";
             this.mTransferBtn.Size = new System.Drawing.Size(170, 28);
-            this.mTransferBtn.TabIndex = 1;
+            this.mTransferBtn.TabIndex = 0;
             this.mTransferBtn.Text = "MONEY TRANSFER";
             this.mTransferBtn.UseVisualStyleBackColor = true;
-            this.mTransferBtn.Click += new System.EventHandler(this.mTransferBtn_Click);
+            this.mTransferBtn.Click += new System.EventHandler(this.moneyTransferBtn_Click);
             // 
             // chngPassBtn
             // 
@@ -100,7 +100,7 @@
             this.chngPassBtn.TabIndex = 2;
             this.chngPassBtn.Text = "CHANGE PASSWORD";
             this.chngPassBtn.UseVisualStyleBackColor = true;
-            this.chngPassBtn.Click += new System.EventHandler(this.chngPassBtn_Click);
+            this.chngPassBtn.Click += new System.EventHandler(this.changePasswordBtn_Click);
             // 
             // label1
             // 

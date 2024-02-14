@@ -7,10 +7,10 @@ namespace lab2_q2
     public partial class MoneyTransferForm : Form
     {
         string username, password;
-        Double balance;
+        double balance;
         List<string> transactions;
 
-        public MoneyTransferForm(string username, string password, Double balance, List<string> transactions)
+        public MoneyTransferForm(string username, string password, double balance, List<string> transactions)
         {
             InitializeComponent();
 
@@ -48,8 +48,15 @@ namespace lab2_q2
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            Double enteredAmt;
-            Double.TryParse(amtField.Text, out enteredAmt);
+            double enteredAmt;
+
+            if (nameField.Text == "" || accnoField.Text == "" || amtField.Text == "")
+            {
+                MessageBox.Show("All fields are mandatory", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double.TryParse(amtField.Text, out enteredAmt);
 
             DialogResult result = MessageBox.Show("Are you sure?", "Confirmation",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -58,10 +65,9 @@ namespace lab2_q2
                 return;
             }
 
-
             if (enteredAmt > balance)
             {
-                MessageBox.Show("Insufficient balance", "ERROR");
+                MessageBox.Show("Insufficient balance", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -70,7 +76,7 @@ namespace lab2_q2
                 MessageBox.Show(String.Format("Amount transferred: {0}\nCurrent balance: $ {1}",
                     enteredAmt,
                     balance),
-                    "SUCCESS");
+                    "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 string transactionText = String.Format("$ {0} transferred to benefitiary: {1} [{2}]{3}",
                     enteredAmt,
                     nameField.Text,

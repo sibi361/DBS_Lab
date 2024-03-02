@@ -1,0 +1,91 @@
+SQL> SELECT * FROM PERSON;
+SELECT * FROM CAR;
+SELECT * FROM ACCIDENT;
+SELECT * FROM OWNS;
+SELECT * FROM PARTICIPATED;
+DRIVER NAME         ADDRESS
+------ -------------------- --------------------------------------------------
+       AGE G
+---------- -
+834923 Anub Sharma      C23, Shyam Apartments, Delhi
+
+
+324984 Rahul Verma      Door no 23, Flat 23341, Mumbai
+
+
+654264 Ramcharan S      Star Enterprises, Hauz Khas, Gurgaon
+
+
+
+DRIVER NAME         ADDRESS
+------ -------------------- --------------------------------------------------
+       AGE G
+---------- -
+867412 Arvind D         Agent Gardens, Paul Abode, Golf Street, Delhi
+
+
+245366 Shravan Thomas       Indira Flats, Car Street, Sector 34, Noida
+
+
+324234 Rohan Mathur     T34, Floyd Apartments, Rajajinagar, S34
+
+
+
+DRIVER NAME         ADDRESS
+------ -------------------- --------------------------------------------------
+       AGE G
+---------- -
+954389 Paritesh Manna       Pari Villa, Villa Novela, Deakin Road, Delhi
+
+
+
+7 rows selected.
+
+SQL> 
+REGNO            MODEL                YEAR
+-------------------- ------------------------------ ----------
+KA20Z2345        Ford Fiesta              2010
+KA19S1293        Toyota Fortuner              2020
+KA40X3982        Honda City               2017
+DL10AA3292       Honda Ecord              2015
+MH34MA2200       Hyundai I20              2007
+PJ23J3453        BMW S3               2020
+KL23O8902        Tata Tiagor              2023
+
+7 rows selected.
+
+SQL> 
+REPORT_NUMBER ACCD_DATE LOCATION
+------------- --------- --------------------------------------------------
+    10983 06-MAY-21 Radio Shop, BIG3 Mall Parking, Sector 23, Delhi
+    10102 02-JAN-20 Lane 2, Sector 34
+    10234 12-MAR-20 Near Hotel Finia, Main road, Connhaught Palace
+    10455 21-APR-21 Indian Oil Petrol Bunk, Pauli Cross, NH 23, Noida
+    10467 04-MAY-21 Shardam Society, Manna Gali, Old Delhi
+    10564 06-MAY-21 Radio Shop, BIG3 Mall Parking, Sector 23, Delhi
+
+6 rows selected.
+
+SQL> 
+DRIVER_ID              REGNO
+------------------------------ --------------------
+654264                 KA40X3982
+324984                 KA20Z2345
+834923                 KA19S1293
+867412                 DL10AA3292
+245366                 MH34MA2200
+
+SQL> 
+
+DRIVER_ID              REGNO            REPORT_NUMBER DAMAGE_AMOUNT
+------------------------------ -------------------- ------------- -------------
+954389                 PJ23J3453            10564       453
+654264                 KA40X3982            10234     21322
+324984                 KA20Z2345            10234      2213
+245366                 MH34MA2200           10455    103232
+834923                 KA19S1293            10467    220212
+324234                 KL23O8902            10983     25000
+
+6 rows selected.
+
+SQL> 

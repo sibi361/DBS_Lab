@@ -1,0 +1,55 @@
+SQL> SET SERVEROUTPUT ON
+
+SQL> -- Q1
+SQL> @q1_driver_display_when_participated
+SQL>INSERT INTO PARTICIPATED VALUES ('324984','KA20Z2345', 10234, 2213, 1230);
+NEW ACCIDENT REPORT:
+DRIVER NAME: Rahul Verma
+DRIVER ADDRESS: Door no 23, Flat 23341, Mumbai
+VEHICLE REG: KA20Z2345
+
+1 row created.
+
+SQL> -- Q2
+SQL> SELECT q2_func_total_accd_from_year(2024) FROM DUAL;
+
+Q2_FUNC_TOTAL_ACCD_FROM_YEAR(2024)
+----------------------------------
+                                 2
+
+DEBUG: 2 accidents occured in the year 2024
+
+SQL> -- Q3
+SQL> @q3_procedure_total_dmg_driver_year
+Procedure created.
+
+SQL> EXEC q3_procedure_total_dmg_driver_year('Arvind D', 2024);
+
+DRIVER NAME: Arvind D
+YEAR: 2024
+TOTAL DAMAGE AMOUNT: 28853
+
+PL/SQL procedure successfully completed.
+
+SQL> -- Q4
+SQL> @q4_procedure_accident_data_from_location
+
+Procedure created.
+
+SQL> EXEC q4_procedure_accident_data_from_location('HP Store, Main Street');
+
+DRIVER NAME: Arvind D
+VEHICLE REG NO: KL75O8902
+DAMAGE AMOUNT: 23423
+ACCIDENT DATE: 12-FEB-24
+
+PL/SQL procedure successfully completed.
+
+SQL> -- no records case
+SQL> EXEC q4_procedure_accident_datSQL> SQL> a_from_location('HP Store, Main');
+
+No accident record found for this location.
+
+PL/SQL procedure successfully completed.
+
+SQL> 

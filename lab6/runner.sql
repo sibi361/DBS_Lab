@@ -33,4 +33,4 @@ EXEC q4_procedure_accident_data_from_location('HP Store, Main Street');
 EXEC q4_procedure_accident_data_from_location('Delhi');
 
 -- no records case
-EXEC q4_procedure_accident_data_from_location('HP Store, Main');
+EXEC q4_procedure_accident_data_from_location('abcdef');

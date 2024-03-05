@@ -45,8 +45,28 @@ ACCIDENT DATE: 12-FEB-24
 
 PL/SQL procedure successfully completed.
 
+SQL> -- multiple records case
+SQL> EXEC q4_procedure_accident_data_from_location('Delhi');
+
+DRIVER NAME: Anub Sharma
+VEHICLE REG NO: KA19S1293
+DAMAGE AMOUNT: 220212
+ACCIDENT DATE: 04-MAY-21
+
+DRIVER NAME: Paritesh Manna
+VEHICLE REG NO: PJ23J3453
+DAMAGE AMOUNT: 453
+ACCIDENT DATE: 06-MAY-21
+
+DRIVER NAME: Arvind D
+VEHICLE REG NO: KL75O8902
+DAMAGE AMOUNT: 23423
+ACCIDENT DATE: 12-FEB-24
+
+PL/SQL procedure successfully completed.
+
 SQL> -- no records case
-SQL> EXEC q4_procedure_accident_datSQL> SQL> a_from_location('HP Store, Main');
+SQL> EXEC q4_procedure_accident_datSQL> SQL> a_from_location('abcdef');
 
 No accident record found for this location.
 

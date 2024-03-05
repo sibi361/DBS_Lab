@@ -1,0 +1,220 @@
+SQL> SELECT * FROM STUDENT;
+
+REGNO                NAME                                               MAJOR                                              BDATE
+-------------------- -------------------------------------------------- -------------------------------------------------- ---------
+220911789            Sachi Singh                                        Information Technology                             29-FEB-04
+220382249            Neki Saul                                          Mechanical                                         21-MAR-02
+220382250            Neki Saul II                                       AIML                                               01-APR-02
+220911123            Rohan Verma                                        Information Technology                             02-JAN-03
+220911456            Karan Rathod                                       Information Technology                             11-MAR-03
+220953321            Manan Singh                                        Computer and Communication Engineering             12-SEP-05
+220953234            Aarav Douglas                                      Computer and Communication Engineering             25-NOV-05
+
+7 rows selected.
+
+SQL> SELECT * FROM COURSE;
+
+   COURSE# CNAME                          DEPT
+---------- ------------------------------ ------------------------------
+      2124 Engineering Mathematics        Mathematics
+      2125 Essentials of Management       Humanities
+      2126 Internet of Things             Humanities
+      2122 Database Systems               ICT
+      2123 Embedded Systems               ICT
+
+SQL> SELECT * FROM TEXT;
+
+ BOOK_ISBN BOOKTITLE                                          PUBLISHER                                          AUTHOR
+---------- -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+1.0013E+11 Essentials of DBMS                                 Harper Collins                                     Anany Levitin
+1.0013E+11 Basics of ARM Assembly                             Harper Collins                                     Ronald Maltrice
+1.0032E+11 Probability and Statistics                         Machmillan                                         Pyglot Stelinky
+1.0013E+11 Managing the Management                            Machmillan                                         John Larrow
+1.0201E+11 IOT: The Future                                    Jaico Books                                        Raman Singh
+1.0201E+11 Embedded C Programming                             Machmillan                                         Peatrice Burrow
+1.0201E+11 Probability Basics                                 Penguin Publishers                                 Ramaswamy S
+
+7 rows selected.
+
+SQL> SELECT * FROM ENROLL;
+
+REGNO                   COURSE#        SEM  BOOK_ISBN
+-------------------- ---------- ---------- ----------
+220953234                  2122          4 1.0013E+11
+220911789                  2122          4 1.0013E+11
+220911789                  2123          4 1.0201E+11
+220911123                  2122          4 1.0013E+11
+220911456                  2123          4 1.0013E+11
+220953321                  2125          3 1.0013E+11
+220953234                  2126          3 1.0201E+11
+
+7 rows selected.
+
+SQL> SELECT * FROM BOOK_ADOPTION;
+
+   COURSE#        SEM  BOOK_ISBN
+---------- ---------- ----------
+      2122          4 1.0013E+11
+      2122          4 1.0013E+11
+      2123          4 1.0013E+11
+      2123          4 1.0201E+11
+      2124          4 1.0032E+11
+      2125          3 1.0013E+11
+      2126          3 1.0201E+11
+
+7 rows selected.
+
+SQL> -- iii)
+SQL> -- a)
+SQL> SELECT CNAME AS COURSE_NAME FROM COURSE WHERE course# IN (
+  2      SELECT course# FROM BOOK_ADOPTION
+  3      GROUP BY COURSE#
+  4      HAVING COUNT(*) > 1
+  5  );
+
+COURSE_NAME
+------------------------------
+Database Systems
+Embedded Systems
+
+SQL> -- b)
+SQL> SELECT DISTINCT dept FROM course WHERE course# IN (
+  2      SELECT DISTINCT course# FROM BOOK_ADOPTION WHERE book_isbn in (
+  3          SELECT book_isbn FROM TEXT WHERE publisher='Machmillan'
+  4      )
+  5  );
+
+DEPT
+------------------------------
+Mathematics
+Humanities
+ICT
+
+SQL> -- c)
+SQL> WITH students_with_multiple_courses(reg) AS (
+  2      SELECT regno FROM enroll
+  3      GROUP BY regno
+  4      HAVING COUNT(regno) > 1
+  5  ),
+  6  students_dept_counts AS (
+  7      SELECT reg, (
+  8          SELECT COUNT(DISTINCT dept) FROM course
+  9          WHERE course# IN (
+ 10              SELECT course# FROM enroll
+ 11              WHERE regno=reg
+ 12          )
+ 13      ) AS dept_count FROM students_with_multiple_courses
+ 14  )
+ 15  SELECT * FROM student
+ 16  WHERE regno IN (
+ 17      SELECT reg FROM students_dept_counts
+ 18      WHERE dept_count > 1
+ 19  );
+
+REGNO                NAME                                               MAJOR                                              BDATE
+-------------------- -------------------------------------------------- -------------------------------------------------- ---------
+220953234            Aarav Douglas                                      Computer and Communication Engineering             25-NOV-05
+
+SQL> -- d)
+SQL> SELECT * FROM STUDENT WHERE regno NOT IN (SELECT regno FROM ENROLL);
+
+REGNO                NAME                                               MAJOR                                              BDATE
+-------------------- -------------------------------------------------- -------------------------------------------------- ---------
+220382250            Neki Saul II                                       AIML                                               01-APR-02
+220382249            Neki Saul                                          Mechanical                                         21-MAR-02
+
+SQL> -- e)
+SQL> WITH publisher_match(matched_dept) AS (
+  2      SELECT DISTINCT dept FROM course WHERE course# IN (
+  3          SELECT course# FROM book_adoption WHERE book_isbn IN (
+  4              SELECT book_isbn FROM text WHERE publisher = 'Machmillan'
+  5          )
+  6      )
+  7  )
+  8  SELECT DISTINCT matched_dept FROM text, publisher_match
+  9  WHERE (SELECT COUNT(book_isbn) FROM book_adoption
+ 10      WHERE course# IN (
+ 11          SELECT course# FROM course
+ 12          WHERE dept=matched_dept
+ 13      )
+ 14      AND (SELECT publisher FROM text WHERE book_isbn = book_adoption.book_isbn) <> 'Machmillan'
+ 15  ) = 0;
+
+MATCHED_DEPT
+------------------------------
+Mathematics
+
+SQL> -- f)
+SQL> SELECT booktitle, author, publisher FROM text
+  2  WHERE book_isbn IN (
+  3      SELECT book_isbn FROM book_adoption
+  4  ) AND book_isbn IN (
+  5      SELECT book_isbn FROM enroll
+  6  );
+
+BOOKTITLE                                          AUTHOR                                             PUBLISHER
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+Essentials of DBMS                                 Anany Levitin                                      Harper Collins
+Managing the Management                            John Larrow                                        Machmillan
+Basics of ARM Assembly                             Ronald Maltrice                                    Harper Collins
+Embedded C Programming                             Peatrice Burrow                                    Machmillan
+IOT: The Future                                    Raman Singh                                        Jaico Books
+
+SQL> -- g)
+SQL> SELECT * FROM course WHERE course# IN (
+  2      SELECT course# FROM book_adoption WHERE (
+  3          SELECT COUNT(*) FROM text
+  4          WHERE publisher = 'Machmillan'
+  5              AND book_isbn IN (
+  6                  SELECT book_isbn FROM enroll WHERE course#=book_adoption.course#
+  7              )
+  8      ) >= 1
+  9  );
+
+   COURSE# CNAME                          DEPT
+---------- ------------------------------ ------------------------------
+      2125 Essentials of Management       Humanities
+      2123 Embedded Systems               ICT
+
+SQL> -- h)
+SQL> SELECT * FROM STUDENT WHERE regno IN (
+  2      SELECT regno FROM enroll
+  3      GROUP BY regno
+  4      ORDER BY COUNT(book_isbn) DESC
+  5      FETCH FIRST 1 ROWS ONLY
+  7  );
+
+REGNO                NAME                                               MAJOR                                              BDATE
+-------------------- -------------------------------------------------- -------------------------------------------------- ---------
+220953321            Manan Singh                                        Computer and Communication Engineering             12-SEP-05
+
+SQL> -- i)
+SQL> SELECT publisher, COUNT(book_isbn) FROM text GROUP BY publisher;
+
+PUBLISHER                                          COUNT(BOOK_ISBN)
+-------------------------------------------------- ----------------
+Harper Collins                                                    2
+Machmillan                                                        3
+Jaico Books                                                       1
+Penguin Publishers                                                1
+
+-- j)
+SQL> SELECT * FROM STUDENT WHERE regno IN (
+  2      SELECT regno FROM enroll
+  3      WHERE book_isbn = ALL (
+  4      SELECT book_isbn FROM book_adoption
+  5      WHERE course#=enroll.course#
+  6      ) GROUP BY regno
+  7  );
+
+REGNO                NAME
+-------------------- --------------------------------------------------
+MAJOR                                              BDATE
+-------------------------------------------------- ---------
+220953321            Manan Singh
+Computer and Communication Engineering             12-SEP-05
+
+220953234            Aarav Douglas
+Computer and Communication Engineering             25-NOV-05
+
+SQL>
